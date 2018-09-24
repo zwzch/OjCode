@@ -7,6 +7,8 @@
 #include <stack>
 #include <queue>
 #include <math.h>
+#include <numeric>
+
 using namespace std;
 bool Find(int target, vector<vector<int> > array) {
     /*
@@ -359,7 +361,7 @@ void Solution14() {
 
 }
 ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
-    stack<ListNode*> s;
+    stack<ListNode *> s;
 
     while (pListHead!=NULL) {
         s.push(pListHead);
@@ -380,16 +382,102 @@ void Solution15() {
 ListNode* ReverseList(ListNode* pHead) {
 
 }
+
+
+void Sloution17(){
+    /*
+     *输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构
+     * */
+}
+void midDis(TreeNode * root,vector<int > &arr){
+    if (root == NULL) return;
+    else {
+//        cout<<root->val<<endl;
+        arr.push_back(int(root->val));
+    };
+    midDis(root->left,arr);
+    midDis(root->right,arr);
+}
+vector<int > in;
+vector<int > out;
+bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2) {
+    if (pRoot2 == NULL)
+        return false;
+    midDis(pRoot2, in);
+    midDis(pRoot1, out);
+    midDis(pRoot2, in);
+    midDis(pRoot1, out);
+    stringstream indata;
+    for (int i = 0; i < in.size(); i++) {
+        indata << in[i];
+    }
+    stringstream outdata;
+    for (int j = 0; j < out.size(); ++j) {
+        outdata << out[j];
+    }
+    if (outdata.str().find(indata.str()) == string::npos) {
+        return false;
+    } else {
+        return true;
+        stringstream indata;
+        for (int i = 0; i < in.size(); i++) {
+            indata << in[i];
+        }
+        stringstream outdata;
+        for (int j = 0; j < out.size(); ++j) {
+            outdata << out[j];
+        }
+        if (outdata.str().find(indata.str()) == string::npos) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+}
+void Solution18() {
+    /*操作给定的二叉树，将其变换为源二叉树的镜像*/
+
+}
+TreeNode *  doMirror(TreeNode * root) {
+    if (root==NULL) return NULL;
+    TreeNode *  ptr = root->left;
+    root->left = root->right;
+    root->right = ptr;
+    doMirror(root->left);
+    doMirror(root->right);
+    return root;
+}
+void Mirror(TreeNode *pRoot) {
+        doMirror(pRoot);
+}
+
 void Test(){
 //    vector<int > array;
 //    array.push_back(3);
 //    cout<<array.size()<<endl;
 //    cout<<array.at(array.size()-1);
-    ListNode listNode(0);
-    ListNode listNode1(1);
-    ListNode listNode2(2);
-    listNode.next=&listNode1;
-    listNode1.next=&listNode2;
-    cout<<FindKthToTail(&listNode,2)->val;
-
+//    ListNode listNode(0);
+//    ListNode listNode1(1);
+//    ListNode listNode2(2);
+//    listNode.next=&listNode1;
+//    listNode1.next=&listNode2;
+//    cout<<FindKthToTail(&listNode,2)->val;
+    TreeNode treeNode1(1);
+    TreeNode treeNode2(2);
+    TreeNode treeNode3(3);
+    treeNode2.left=&treeNode1;
+    treeNode2.right=&treeNode3;
+//    midDis(&treeNode2,in);
+//    stringstream lastdata;
+//    lastdata = accumulate(in.begin(), in.end(), lastdata);
+//    cout<<lastdata<<endl;
+//    for(int i=0;i<in.size();i++) {
+//        lastdata<<in[i];
+//    }
+//
+//    cout<<lastdata.str()<<endl;
+//    cout<<HasSubtree(&treeNode2,&treeNode2);
+    doMirror(&treeNode2);
+    cout<<treeNode2.left->val<<endl;
 }
