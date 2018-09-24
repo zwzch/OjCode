@@ -452,6 +452,131 @@ void Mirror(TreeNode *pRoot) {
         doMirror(pRoot);
 }
 
+void Solution19() {
+    /*输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+     * 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.*/
+    /* 1 2 3 4
+     * 5 6 7 8
+     * 9 10 11 12
+     * 13 14 15 16*/
+    /* 可以模拟魔方逆时针旋转的方法，一直做取出第一行的操作
+        例如
+        1 2 3
+        4 5 6
+        7 8 9
+        输出并删除第一行后，再进行一次逆时针旋转，就变成：
+        6 9
+        5 8
+        4 7
+        继续重复上述操作即可*/
+    /*
+     *
+        class Solution:
+        # matrix类型为二维列表，需要返回列表
+        def printMatrix(self, matrix):
+            # write code here
+            result = []
+            while(matrix):
+                result+=matrix.pop(0)
+                if not matrix or not matrix[0]:
+                    break
+                matrix = self.turn(matrix)
+            return result
+        def turn(self,matrix):
+            num_r = len(matrix)
+            num_c = len(matrix[0])
+            newmat = []
+            for i in range(num_c):
+                newmat2 = []
+                for j in range(num_r):
+                    newmat2.append(matrix[j][i])
+                newmat.append(newmat2)
+            newmat.reverse()
+            return newmat
+     * */
+}
+vector<int> printMatrix(vector<vector<int> > matrix) {
+    vector<int> result;
+    cout<<matrix[0][0]<<endl;
+    cout<<matrix[1][2]<<endl;
+    return result;
+}
+void Solution20() {
+//    定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））
+}
+class Solution20 {
+public:
+    stack <int > nomal;
+    stack <int > mins;
+    void push(int value) {
+        nomal.push(value);
+        if (mins.empty()) {
+            mins.push(value);
+        } else {
+            if (value<=mins.top()) {
+                mins.push(value);
+            } else {
+                mins.push(mins.top());
+            }
+        }
+    }
+    void pop() {
+        nomal.pop();
+        mins.pop();
+    }
+    int top() {
+        return nomal.top();
+    }
+    int min() {
+        return mins.top();
+    }
+
+};
+void Solution21() {
+    /*输入两个整数序列，第一i均不相等。例如序列1,2,3,4,5是某栈的压入顺序，
+     * 序列4,5,3,2,1是该压栈序输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。
+     * （注意：这两个序列的长度是相等的）*/
+}
+bool IsPopOrder(vector<int> pushV,vector<int> popV) {
+    stack<int > push;
+    int i = 0;
+    int j = 0;
+    while (i<pushV.size()) {
+
+            push.push(pushV[i]);
+            if (push.top() == popV.front()) { break; }
+            else {
+                i++;
+            }
+    }
+    bool result= true;
+    while (j<popV.size()) {
+        if(popV[j]==push.top()) {
+            j++;
+            push.pop();
+        } else if (i < pushV.size()) {
+            push.push(pushV[++i]);
+            if (push.top()==popV[j]) {
+                j++;
+                push.pop();
+            } else {
+                continue;
+            }
+        } else {
+            result=false;
+            break;
+        }
+    }
+    if (!push.empty()) {
+        result= false;
+    }
+    return result;
+}
+void Solution22() {
+    /*
+     * 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+     * */
+}
 void Test(){
 //    vector<int > array;
 //    array.push_back(3);
@@ -478,6 +603,14 @@ void Test(){
 //
 //    cout<<lastdata.str()<<endl;
 //    cout<<HasSubtree(&treeNode2,&treeNode2);
-    doMirror(&treeNode2);
-    cout<<treeNode2.left->val<<endl;
+//    doMirror(&treeNode2);
+//    cout<<treeNode2.left->val<<endl;
+//    vector<vector<int >> matrix = {{1,2,3,4},
+//                        {5,6,7,8},
+//                        {9,10,11,12},
+//                        {13,14,15,16}};
+//    printMatrix(matrix);
+    vector<int > push = {1,2,3,4,5};
+    vector<int > pop = {3,5,4,2,1};
+    cout<<IsPopOrder(push,pop)<<endl;
 }
