@@ -577,6 +577,19 @@ void Solution22() {
      * 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
      * */
 }
+int getHeight(TreeNode * root) {
+    int i=0;
+    TreeNode * tmp_root = root;
+    while (tmp_root!=NULL){
+        i++;
+        tmp_root=tmp_root->left;
+    }
+
+    return i;
+}
+vector<int> PrintFromTopToBottom(TreeNode* root) {
+
+}
 void Test(){
 //    vector<int > array;
 //    array.push_back(3);
@@ -610,7 +623,8 @@ void Test(){
 //                        {9,10,11,12},
 //                        {13,14,15,16}};
 //    printMatrix(matrix);
-    vector<int > push = {1,2,3,4,5};
-    vector<int > pop = {3,5,4,2,1};
-    cout<<IsPopOrder(push,pop)<<endl;
+//    vector<int > push = {1,2,3,4,5};
+//    vector<int > pop = {3,5,4,2,1};
+//    cout<<IsPopOrder(push,pop)<<endl;
+    cout<<getHeight(&treeNode2)<<endl;
 }
