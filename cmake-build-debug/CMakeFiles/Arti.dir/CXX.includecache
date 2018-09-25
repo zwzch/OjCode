@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/edz/CLionProjects/Arti/jianzhi_offer.cpp
+vector
+-
+iostream
+/Users/edz/CLionProjects/Arti/iostream
+sstream
+/Users/edz/CLionProjects/Arti/sstream
+stack
+-
+queue
+-
+math.h
+-
+

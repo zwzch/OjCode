@@ -1,0 +1,3 @@
+/Users/edz/CLionProjects/Arti/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/edz/CLionProjects/Arti/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/edz/CLionProjects/Arti/cmake-build-debug/CMakeFiles/Arti.dir
