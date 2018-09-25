@@ -577,19 +577,32 @@ void Solution22() {
      * 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
      * */
 }
-int getHeight(TreeNode * root) {
-    int i=0;
-    TreeNode * tmp_root = root;
-    while (tmp_root!=NULL){
-        i++;
-        tmp_root=tmp_root->left;
-    }
 
-    return i;
-}
 vector<int> PrintFromTopToBottom(TreeNode* root) {
+    //实际就是广度有限搜索BFS,借助队列实现
+    vector<int> res;
+    if(root==NULL)
+    return res;
+    queue<TreeNode*> q;
+    q.push(root);
+    while(!q.empty()){
+        res.push_back(q.front()->val);
+        if(q.front()->left!=NULL)
+        q.push(q.front()->left);
+        if(q.front()->right!=NULL)
+        q.push(q.front()->right);
+        q.pop();
+    }
+    return res;
+}
+void Solution23() {
+    /*输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。
+     * 假设输入的数组的任意两个数字都互不相同。*/
+}
+bool VerifySquenceOfBST(vector<int> sequence) {
 
 }
+
 void Test(){
 //    vector<int > array;
 //    array.push_back(3);
@@ -601,11 +614,19 @@ void Test(){
 //    listNode.next=&listNode1;
 //    listNode1.next=&listNode2;
 //    cout<<FindKthToTail(&listNode,2)->val;
-    TreeNode treeNode1(1);
-    TreeNode treeNode2(2);
-    TreeNode treeNode3(3);
-    treeNode2.left=&treeNode1;
-    treeNode2.right=&treeNode3;
+    TreeNode treeNode1(10);
+    TreeNode treeNode2(6);
+    TreeNode treeNode3(14);
+    TreeNode treeNode4(4);
+    TreeNode treeNode5(8);
+    TreeNode treeNode6(12);
+    TreeNode treeNode7(16);
+    treeNode1.left=&treeNode2;
+    treeNode1.right=&treeNode3;
+    treeNode2.left=&treeNode4;
+    treeNode2.right=&treeNode5;
+    treeNode3.left=&treeNode6;
+    treeNode3.right = &treeNode7;
 //    midDis(&treeNode2,in);
 //    stringstream lastdata;
 //    lastdata = accumulate(in.begin(), in.end(), lastdata);
@@ -626,5 +647,7 @@ void Test(){
 //    vector<int > push = {1,2,3,4,5};
 //    vector<int > pop = {3,5,4,2,1};
 //    cout<<IsPopOrder(push,pop)<<endl;
-    cout<<getHeight(&treeNode2)<<endl;
+    vector<int> xxx;
+    xxx=PrintFromTopToBottom(&treeNode1);
+    cout<<xxx[0]<<xxx[1]<<xxx[2]<<endl;
 }
